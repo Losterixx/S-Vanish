@@ -1,0 +1,17 @@
+# S-Core v1.0 by Losterixx
+#
+# This plugin utilizes MiniMessage for messages.
+# For more information, visit https://docs.adventure.kyori.net/minimessage.html
+
+general:
+  noPlayer: "<gray>This action can <red>only be executed by players<gray>!"
+  noPerms: "<gray>You <red>don't have permission <gray>to do this!"
+  playerNotFound: "<gray>The specified player <red>could not be found<gray>!"
+
+commands:
+  svanish:
+    usage: "<gray>Please use <red>/svanish <about/reload><gray>!"
+    about: "<gray>S-Vanish v%version% <dark_gray>- <gray>Losterixx"
+    reload:
+      reloading: "<gray>All config-files <yellow>are reloading <gray>..."
+      reloaded: "<gray>All config-files <yellow>have been reloaded<gray>!"
