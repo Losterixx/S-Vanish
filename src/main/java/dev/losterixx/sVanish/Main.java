@@ -6,10 +6,12 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.losterixx.sVanish.commands.SVanish;
 import dev.losterixx.sVanish.utils.ConfigManager;
@@ -33,10 +35,11 @@ public class Main {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        logger.info("SPlaytime is loading...");
 
+        //-> Custom
         instance = this;
 
+        //-> Configs
         PluginContainer container = proxy.getPluginManager().getPlugin("svanish")
                 .orElseThrow(() -> new IllegalStateException("Plugin container not found"));
         configManager = new ConfigManager(container, dataDirectory);
@@ -46,9 +49,19 @@ public class Main {
 
         logger.info("Loaded " + configManager.getAllConfigs().size() + " configs!");
 
+        //-> Plugin Channel
+        getProxy().getChannelRegistrar().register(MinecraftChannelIdentifier.from("svanish:main"));
+
+        //-> Register Commands and Listeners
         registerCommandsAndListeners();
 
         logger.info("SPlaytime has been enabled!");
+    }
+
+    @Subscribe
+    public void onProxyShutdown(ProxyShutdownEvent event) {
+        getProxy().getChannelRegistrar().unregister(MinecraftChannelIdentifier.from("svanish:main"));
+        logger.info("SPlaytime has been disabled!");
     }
 
     private void registerCommandsAndListeners() {

@@ -3,6 +3,7 @@ package dev.losterixx.sVanish.commands;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.losterixx.sVanish.BuildConstants;
 import dev.losterixx.sVanish.Main;
 import dev.losterixx.sVanish.utils.ConfigManager;
 import net.kyori.adventure.text.Component;
@@ -37,7 +38,7 @@ public class SVanish implements SimpleCommand {
             }
 
             case "about" -> {
-                source.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.svanish.about"))));
+                source.sendMessage(prefix.append(mm.deserialize(messages.getString("commands.svanish.about").replaceAll("%version%", BuildConstants.VERSION))));
             }
 
             case "reload" -> {

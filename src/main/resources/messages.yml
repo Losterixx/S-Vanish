@@ -15,3 +15,13 @@ commands:
     reload:
       reloading: "<gray>All config-files <yellow>are reloading <gray>..."
       reloaded: "<gray>All config-files <yellow>have been reloaded<gray>!"
+  vanish:
+    usage: "<gray>Please use <red>/vanish <Player><gray>!"
+    vanishOn: "<gray>You are now <green>invisible<gray>!"
+    vanishOff: "<gray>You are now <red>visible<gray>!"
+    vanishOtherOn: "<gray>You have made <green>%player% <gray>invisible<gray>!"
+    vanishOtherOff: "<gray>You have made <red>%player% <gray>visible<gray>!"
+    list:
+      empty: "<gray>There are <red>no players <gray>in vanish!"
+      header: "<gray>Players in vanish:"
+      entry: "<gray>- <yellow>%player%"
